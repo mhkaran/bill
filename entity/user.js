@@ -2,18 +2,20 @@ let mongoose = require('mongoose');
 let uniqueValidator = require('mongoose-unique-validator');
 let idValidator = require('mongoose-id-validator');
 
-let userSchema = new BaseSchema();
+let schema = mongoose.Schema
 
-userSchema.add({
-  userId:{type:String, index: true, unique:true, required:[true, 'user Id is required?']},
+let userSchema = new schema({
+  userId:{type:String, index: true, unique:true, required:[true, 'user Id is required']},
   isAdmin: { type: Boolean, default: false },
+  firstName: {type:String,required:[true,'last name is required!']},
+  lastName: {type:String,required:[true,'first name is required!']},
   token:{type:String},
-  lastLogin:{type:Date},
-  managerLimit:{type:Number,required:[true,'please immediate approval limit!']},
+  lastLogin:{type:Date,default:Date.now},
+  managerLimit:{type:Number,required:[true,'please set immediate approval limit!']},
   emailId: {
     type: String, 
     unique:true,
-    required: [true, "emailId is required?"],
+    required: [true, "emailId is required!"],
     validate: {
       validator: function(v) {
         return (/[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/).test(v);
@@ -23,29 +25,45 @@ userSchema.add({
   },
   mobile:{
     type:Number,
-    required:[true,'mobile no is required?'],
+    required:[true,'mobile no is required!'],
     maxlength:10,
     minlength:10
   },
   password: {
       type:String, 
-      required:[true,'password is required'],
-      validate :{
-        validator :function(v){
-            return (/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/).test(v);
-        },
-        message:'password is not strong enough!'
-      }
+      required:[true,'password is required']//,
+      // validate :{
+      //   validator :function(v){
+      //       return (/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/).test(v);
+      //   },
+      //   message:'password is not strong enough!'
+      // }
     },
     region:{
         type:mongoose.Types.ObjectId,
         ref:'region',
-        required: [true, "region is required?"]
+        required: [true, "region is required!"]
     },
     manager:{
         type:mongoose.Types.ObjectId,
-        ref:'user'
+        ref:'user',
+        default:null
     },
+    creator:     {  
+      type: schema.Types.ObjectId,
+      ref: "user",
+      default:null
+    },
+    modifier:    { 
+      type: schema.Types.ObjectId,
+      ref: "user",
+      default:null
+    },
+    passwordExpired:{type:Boolean,default:true},
+    createdDate:  { type: Date, default: Date.now},
+    modifiedDate: { type: Date, index: true, default: Date.now},
+    active:{type:Boolean, default:true},
+    deleted : {type:Boolean, default:false}
 });
 
 userSchema.plugin(uniqueValidator);

@@ -1,14 +1,11 @@
 const express = require('express')
 const app = express()
-const port = 3000
 const bodyParser = require('body-parser')
-const user = require('./route/route_user.js')  
-const designation =  require('./route/route_designation.js')
-const subDesignation =  require('./route/route_subDesignation.js')
 const mongoose = require('mongoose');
-const appConst = require('./common/applicationConstant.js')
+const appConst = require('./model/applicationConstant.js')
 const cors = require('cors');
-const base = require('./common/baseSchema.js');
+const route = require('./route/commonRoute.js');
+const entityObject = require('./middleware/route_entityCreation.js');
 
 //mongoose connection
 mongoose.connect(appConst.mongodb.url,{ useNewUrlParser: true });
@@ -20,13 +17,13 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 
+app.use(entityObject);
+
 //set route
-app.use('/user', user);
-app.use('/designation', designation);
-app.use('/subDesignation',subDesignation);
+app.use('/' + appConst.app, route);
 
 //set cors enable for whole site
 app.use(cors());
 app.options('*', cors());
 
-app.listen(port, () => console.log('Example app listening on port ' + port + ' !'))
+app.listen(appConst.port, () => console.log('Example app listening on port ' + appConst.port + ' !'))

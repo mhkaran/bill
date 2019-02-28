@@ -65,7 +65,7 @@ module.exports ={
         })
     },
 
-    blankcompany : ()=>{
+    blankCompany : ()=>{
         return new Promise((resolve,reject)=>{
             resolve(company);
         });
@@ -78,7 +78,7 @@ module.exports ={
             categoryObj = new category({
                 name : obj.name,
                 active : obj.active,
-                region : mongoose.Types.ObjectId(obj.region)
+                company : mongoose.Types.ObjectId(obj.company)
             });
 
             if (obj.creator !=null || obj.creator != undefined)
@@ -94,7 +94,7 @@ module.exports ={
         })
     },
 
-    blankcategory : ()=>{
+    blankCategory : ()=>{
         return new Promise((resolve,reject)=>{
             resolve(category);
         });
@@ -123,7 +123,7 @@ module.exports ={
         })
     },
 
-    blanksubCategory : ()=>{
+    blankSubCategory : ()=>{
         return new Promise((resolve,reject)=>{
             resolve(subCategory);
         });
@@ -153,7 +153,7 @@ module.exports ={
         })
     },
 
-    blankpackage : ()=>{
+    blankPackage : ()=>{
         return new Promise((resolve,reject)=>{
             resolve(package);
         });
@@ -184,7 +184,7 @@ module.exports ={
         })
     },
 
-    blankpackageHistory : ()=>{
+    blankPackageHistory : ()=>{
         return new Promise((resolve,reject)=>{
             resolve(packageHistory);
         });
@@ -199,6 +199,7 @@ module.exports ={
                 contactNo : obj.contactNo,
                 emailId : obj.emailId,
                 package : mongoose.Types.ObjectId(obj.package),
+                company : mongoose.Types.ObjectId(obj.company),
                 startDate : obj.startDate,
                 endDate : obj.endDate,
                 totalUserCount : obj.totalUserCount,
@@ -218,7 +219,7 @@ module.exports ={
         })
     },
 
-    blankregion : ()=>{
+    blankRegion : ()=>{
         return new Promise((resolve,reject)=>{
             resolve(region);
         });
@@ -252,7 +253,7 @@ module.exports ={
         })
     },
 
-    blankrequest : ()=>{
+    blankRequest : ()=>{
         return new Promise((resolve,reject)=>{
             resolve(request);
         });
@@ -281,7 +282,7 @@ module.exports ={
         })
     },
 
-    blankrequest : ()=>{
+    blankRequestApprover : ()=>{
         return new Promise((resolve,reject)=>{
             resolve(requestApprover);
         });
@@ -296,10 +297,12 @@ module.exports ={
                 lastLogin : obj.lastLogin,
                 managerLimit : obj.managerLimit,
                 emailId : obj.emailId,
+                firstName: obj.firstName,
+                lastName: obj.lastName,
                 mobile : obj.mobile,
                 password : obj.password,
                 region : mongoose.Types.ObjectId(obj.region),
-                manager : mongoose.Types.ObjectId(obj.manager),
+                manager :obj.manager != undefined ? mongoose.Types.ObjectId(obj.manager):null,
                 active : obj.active
             });
 
@@ -316,7 +319,7 @@ module.exports ={
         })
     },
 
-    blankuser : ()=>{
+    blankUser : ()=>{
         return new Promise((resolve,reject)=>{
             resolve(user);
         });

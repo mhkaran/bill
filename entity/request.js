@@ -2,9 +2,9 @@ let mongoose = require('mongoose');
 let uniqueValidator = require('mongoose-unique-validator');
 let idValidator = require('mongoose-id-validator');
 
-let requestSchema = new BaseSchema();
+let schema = mongoose.Schema
 
-requestSchema.add({
+let requestSchema = new schema({
   title: {type:String, required:[true, 'title is required?']},
   description: {type:String, required:[true, 'description is required?']},
   file: {type:String},
@@ -19,7 +19,21 @@ requestSchema.add({
     type: schema.Types.ObjectId,
     ref: "user",
     required: [true, "user is required?"]
-  }
+  },
+  creator:     {  
+    type: schema.Types.ObjectId,
+    ref: "user",
+    default:null
+  },
+  modifier:    { 
+    type: schema.Types.ObjectId,
+    ref: "user",
+    default:null
+  },
+  createdDate:  { type: Date, default: Date.now},
+  modifiedDate: { type: Date, index: true, default: Date.now},
+  active:{type:Boolean, default:true},
+  deleted : {type:Boolean, default:false}
 });
 
 requestSchema.plugin(uniqueValidator);
