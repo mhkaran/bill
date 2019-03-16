@@ -23,9 +23,8 @@ module.exports = async (req,res,next)=>{
             if (userInfo==undefined)
                 res.status(403).end('authentication failed!');
             else
-                req.userInfo = userInfo 
+                req.userInfo = JSON.parse(userInfo); 
         }
-
         req.entity = req.originalUrl.split('/')[2].toLowerCase();
                 
         if (req.entity == appConst.entity.enterprise)

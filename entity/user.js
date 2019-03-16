@@ -59,7 +59,7 @@ let userSchema = new schema({
       ref: "user",
       default:null
     },
-    passwordExpired:{type:Boolean,default:true},
+    passwordExpiryDate:{type:Date,default:new Date(new Date().setMonth(new Date().getMonth()+1))},
     createdDate:  { type: Date, default: Date.now},
     modifiedDate: { type: Date, index: true, default: Date.now},
     active:{type:Boolean, default:true},

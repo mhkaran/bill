@@ -25,9 +25,14 @@ router.post('/*', async (req, res) =>{
     let statusCode = 200;
     let resData;
     try{
-        
+
         if (appConst.httpMehtod.post.includes(req.actionMethod))
-        resData = await req.controller[req.actionMethod](req.body);
+        {
+            if (req.userInfo!=undefined)
+            req.body.creator = req.userInfo.id;
+
+            resData = await req.controller[req.actionMethod](req.body);
+        }
         else
           throw 'http method not is not valid with request url';
     }
@@ -44,9 +49,14 @@ router.put('/*', async (req, res) => {
       
     let resMsg = req.entity + ' update successfully!';
     let statusCode = 200;
+    let resData;
     try{
-        if (appConst.httpMehtod.put.includes(req.actionMethod))
-          await req.controller[req.actionMethod](req.body);
+        if (appConst.httpMehtod.put.includes(req.actionMethod)){
+            
+            req.body.value.modifier = req.userInfo.id;
+            req.body.value.modifiedDate = new Date();
+            resData = await req.controller[req.actionMethod](req.body);
+        }
         else
           throw 'http method not is not valid with request url';  
     }
@@ -55,6 +65,7 @@ router.put('/*', async (req, res) => {
         statusCode = 500
         resMsg = req.entity + ' is not updated because of following reason : ' + e;
     }
+    if (resData!=undefined) resMsg = resData;
     res.status(statusCode).end(resMsg);
 });
 

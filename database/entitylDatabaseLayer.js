@@ -23,7 +23,8 @@ module.exports= {
     {
         try
         {
-            return await repo.save(model);
+             await repo.save(model);
+             return;
         }
         catch(e)
         {

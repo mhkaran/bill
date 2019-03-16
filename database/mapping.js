@@ -23,10 +23,10 @@ module.exports ={
             });
 
             if (obj.creator !=null || obj.creator != undefined)
-                    enterpriseObj.creator = mongoose.Type.ObjectId(obj.creator);
+                    enterpriseObj.creator = mongoose.Types.ObjectId(obj.creator);
             
             if (obj.modifier !=null || obj.modifier != undefined)
-                    enterpriseObj.modifier = mongoose.Type.ObjectId(obj.modifier);
+                    enterpriseObj.modifier = mongoose.Types.ObjectId(obj.modifier);
 
             if (enterpriseObj.active == undefined || enterpriseObj.active == null) 
             delete enterpriseObj.active;
@@ -53,10 +53,10 @@ module.exports ={
             });
 
             if (obj.creator !=null || obj.creator != undefined)
-            companyObj.creator = mongoose.Type.ObjectId(obj.creator);
+            companyObj.creator = mongoose.Types.ObjectId(obj.creator);
             
             if (obj.modifier !=null || obj.modifier != undefined)
-            companyObj.modifier = mongoose.Type.ObjectId(obj.modifier);
+            companyObj.modifier = mongoose.Types.ObjectId(obj.modifier);
 
             if (companyObj.active == undefined || companyObj.active == null) 
             delete companyObj.active;
@@ -82,10 +82,10 @@ module.exports ={
             });
 
             if (obj.creator !=null || obj.creator != undefined)
-            categoryObj.creator = mongoose.Type.ObjectId(obj.creator);
+            categoryObj.creator = mongoose.Types.ObjectId(obj.creator);
             
             if (obj.modifier !=null || obj.modifier != undefined)
-            categoryObj.modifier = mongoose.Type.ObjectId(obj.modifier);
+            categoryObj.modifier = mongoose.Types.ObjectId(obj.modifier);
 
             if (categoryObj.active == undefined || categoryObj.active == null) 
             delete categoryObj.active;
@@ -111,10 +111,10 @@ module.exports ={
             });
 
             if (obj.creator !=null || obj.creator != undefined)
-            subCategoryObj.creator = mongoose.Type.ObjectId(obj.creator);
+            subCategoryObj.creator = mongoose.Types.ObjectId(obj.creator);
             
             if (obj.modifier !=null || obj.modifier != undefined)
-            subCategoryObj.modifier = mongoose.Type.ObjectId(obj.modifier);
+            subCategoryObj.modifier = mongoose.Types.ObjectId(obj.modifier);
 
             if (subCategoryObj.active == undefined || subCategoryObj.active == null) 
             delete subCategoryObj.active;
@@ -141,10 +141,10 @@ module.exports ={
             });
 
             if (obj.creator !=null || obj.creator != undefined)
-            packageObj.creator = mongoose.Type.ObjectId(obj.creator);
+            packageObj.creator = mongoose.Types.ObjectId(obj.creator);
             
             if (obj.modifier !=null || obj.modifier != undefined)
-            packageObj.modifier = mongoose.Type.ObjectId(obj.modifier);
+            packageObj.modifier = mongoose.Types.ObjectId(obj.modifier);
 
             if (packageObj.active == undefined || packageObj.active == null) 
             delete packageObj.active;
@@ -172,10 +172,10 @@ module.exports ={
             });
 
             if (obj.creator !=null || obj.creator != undefined)
-            packageHistoryObj.creator = mongoose.Type.ObjectId(obj.creator);
+            packageHistoryObj.creator = mongoose.Types.ObjectId(obj.creator);
             
             if (obj.modifier !=null || obj.modifier != undefined)
-            packageHistoryObj.modifier = mongoose.Type.ObjectId(obj.modifier);
+            packageHistoryObj.modifier = mongoose.Types.ObjectId(obj.modifier);
 
             if (packageHistoryObj.active == undefined || packageHistoryObj.active == null) 
             delete packageHistoryObj.active;
@@ -207,10 +207,10 @@ module.exports ={
             });
 
             if (obj.creator !=null || obj.creator != undefined)
-            regionObj.creator = mongoose.Type.ObjectId(obj.creator);
+            regionObj.creator = mongoose.Types.ObjectId(obj.creator);
             
             if (obj.modifier !=null || obj.modifier != undefined)
-            regionObj.modifier = mongoose.Type.ObjectId(obj.modifier);
+            regionObj.modifier = mongoose.Types.ObjectId(obj.modifier);
 
             if (regionObj.active == undefined || regionObj.active == null) 
             delete regionObj.active;
@@ -241,10 +241,10 @@ module.exports ={
             });
 
             if (obj.creator !=null || obj.creator != undefined)
-            requestObj.creator = mongoose.Type.ObjectId(obj.creator);
+            requestObj.creator = mongoose.Types.ObjectId(obj.creator);
             
             if (obj.modifier !=null || obj.modifier != undefined)
-            requestObj.modifier = mongoose.Type.ObjectId(obj.modifier);
+            requestObj.modifier = mongoose.Types.ObjectId(obj.modifier);
 
             if (requestObj.active == undefined || requestObj.active == null) 
             delete requestObj.active;
@@ -270,10 +270,10 @@ module.exports ={
             });
 
             if (obj.creator !=null || obj.creator != undefined)
-            requestApproverObj.creator = mongoose.Type.ObjectId(obj.creator);
+            requestApproverObj.creator = mongoose.Types.ObjectId(obj.creator);
             
             if (obj.modifier !=null || obj.modifier != undefined)
-            requestApproverObj.modifier = mongoose.Type.ObjectId(obj.modifier);
+            requestApproverObj.modifier = mongoose.Types.ObjectId(obj.modifier);
 
             if (requestApproverObj.active == undefined || requestApproverObj.active == null) 
             delete requestApproverObj.active;
@@ -305,12 +305,12 @@ module.exports ={
                 manager :obj.manager != undefined ? mongoose.Types.ObjectId(obj.manager):null,
                 active : obj.active
             });
-
+             
             if (obj.creator !=null || obj.creator != undefined)
-            userObj.creator = mongoose.Type.ObjectId(obj.creator);
+            userObj.creator = mongoose.Types.ObjectId(obj.creator);
             
             if (obj.modifier !=null || obj.modifier != undefined)
-            userObj.modifier = mongoose.Type.ObjectId(obj.modifier);
+            userObj.modifier = mongoose.Types.ObjectId(obj.modifier);
 
             if (userObj.active == undefined || userObj.active == null) 
             delete userObj.active;

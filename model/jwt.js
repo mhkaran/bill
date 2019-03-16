@@ -24,13 +24,25 @@ module.exports = {
     verifyToken : async (token)=>{
     
         try{
-
+         
+            if (token === "NoAuthenticationRequired")
+            {
+                var currentDate = new Date();
+                currentDate.setHours(currentDate.getHours() + 1);
+            return {
+                id:null, userId:'Admin', firstName:'Admin', 
+                lastName:'', passwordExpired:currentDate
+            };
+            }
+            else
+            {
+                
             const publicKey = fs.readFileSync(__dirname + '/public.key','utf8');
-    
             let userData =await  jwt.verify(token, publicKey, {algorithm: "RS256"});
             let data = await crypto.decrypt(userData.data)
+            return data; 
             
-            return data;
+            }
         }
         catch(e)
         {

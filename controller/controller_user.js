@@ -20,7 +20,6 @@ module.exports ={
 
     },
     add : async  (obj)=>{
-
         try{
             let entity = await mapping.user(obj)
             entity.password = await crypto.genrateHashCode(entity.password);
@@ -29,7 +28,6 @@ module.exports ={
         catch(e){
             throw e;
         }
-
     },
     update : async (obj)=>{
         
@@ -42,6 +40,7 @@ module.exports ={
             return await modelDatabaseLayer.update(entity,obj.filter,obj.value);
         }
         catch(e){
+            console.log(e)
             throw e;
         }
 

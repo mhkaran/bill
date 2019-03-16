@@ -25,7 +25,7 @@ module.exports = {
 
     count : async(module,condition)=>{
         try{
-            return await module.count(condition);
+            return await module.countDocuments(condition);
         }
         catch(e)
         {
@@ -35,8 +35,7 @@ module.exports = {
     update : async (model,condition,updatedValues)=>{
 
             try {
-
-                let rtnData = await model.collection.updateMany(condition, updatedValues,
+                let rtnData = await model.updateMany(condition, updatedValues,
                     {runValidators: true, context: 'query'})
                 if (rtnData.nModified==0) throw "no record found for update request";
             }
